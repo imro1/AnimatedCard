@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+      <title>Animated Card</title>
+      <link rel="stylesheet" type="text/css" href="style/styles.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="script/js.js"></script>
+   </head>
+   <body>
+      <div class="cards-wrapper">
+         <div class="cards-container">
+            <ul class="pro_list">
+               <li class="selected" style="background-image: url('images/pic1.jpg');" 
+                  data-title="Happy Birthday!" 
+                  data-description="Happy Birthday! 🎉 Wishing you a day filled with love, laughter, and all the joy your heart can hold. May this year be your best one yet! 🎂🎈"></li>
+               <li style="background-image: url('images/pic2.jpg');" 
+                  data-title="Stay Well" 
+                  data-description="Stay well and keep shining your light for the world to see! 🌟"></li>
+               <li style="background-image: url('images/pic3.jpg');" 
+                  data-title="Get Rich" 
+                  data-description="And of course, I wish you more money to make all your dreams come true! 💰💫"></li>
+               <li style="background-image: url('images/pic4.jpg');" 
+                  data-title="Find Love" 
+                  data-description="And may you find not only success but also a love that fills your life with happiness and warmth. ❤️"></li>
+            </ul>
+            <section>
+               <article class="card">
+                  <div class="card_inner">
+                     <div class="card-header">
+                        <div class="pro_pic" style="background-image: url('images/ToReplace.png');"></div>
+                        <h1 class="pro_title">From: [Name]</h1>
+                     </div>
+                     <div class="pro_description">
+                        <p>Happy Birthday to [Name]</p>
+                     </div>
+                  </div>
+               </article>
+            </section>
+         </div>
+         <div class="bg-radius">
+            <span id="radius1"></span>
+            <span id="radius2"></span>
+            <span id="radius3"></span>
+            <span id="radius4"></span>
+            <span id="radius5"></span>
+            <span id="radius6"></span>
+         </div>
+      </div>
+   </body>
+</html>
+<script>
+   var pro_list = document.querySelectorAll('.pro_list li');
+   var card = document.querySelector('.card');
+   var pro_pic = document.querySelector('.pro_pic');
+   var pro_title = document.querySelector('.pro_title');
+   var pro_Description = document.querySelector('.pro_description');
+   
+   pro_list.forEach(function(pro_listSingle) {
+      pro_listSingle.addEventListener('click',function(){
+          BgImg = this.style.backgroundImage;
+          DataTitle = this.getAttribute("data-title");
+          DataDescription = this.getAttribute("data-description");
+   
+           //alert(bgimg);
+          for (var item of pro_list) {
+              item.classList.remove('selected');
+          }
+          this.classList = "selected";
+   
+          var bg_radius1= Math.floor(Math.random() *(70-1) + 1);
+          document.getElementById('radius1').style.left = bg_radius1+"vh";
+          var bg_radius2= Math.floor(Math.random() *(70-1) + 1);
+          document.getElementById('radius2').style.left = bg_radius2+"vh";
+          var bg_radius3= Math.floor(Math.random() *(70-1) + 1);
+          document.getElementById('radius3').style.left = bg_radius3+"vh";
+          var bg_radius4= Math.floor(Math.random() *(70-1) + 1);
+          document.getElementById('radius4').style.right = bg_radius4+"vh";
+          var bg_radius5= Math.floor(Math.random() *(70-1) + 1);
+          document.getElementById('radius5').style.right = bg_radius5+"vh";
+          var bg_radius6= Math.floor(Math.random() *(70-1) + 1);
+          document.getElementById('radius6').style.right = bg_radius6+"vh";
+          
+          card.classList = "card card_animated"
+          setTimeout(function(){
+              pro_pic.style.backgroundImage = BgImg;
+              pro_title.innerHTML = DataTitle;
+              pro_Description.innerHTML = DataDescription;
+   
+          },700);
+          setTimeout(function(){
+              card.classList.remove("card_animated");
+          },1500)
+      });
+   });
+</script>
